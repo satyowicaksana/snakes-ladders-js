@@ -1,0 +1,25 @@
+html, body {
+    max-width: 1366px;
+    margin: auto;
+    font-family: 'Arial';
+    background-color: #e3f5ff;
+}
+
+#game-container {
+    height: 700px;
+    width: 700px;
+    margin-left: 333px;
+    margin-right: 333px;
+    margin-top: 20px;
+}
+
+.side-container {
+    height: 700px;
+    width: 333px;
+}
+
+.box {
+    height: 70px;
+    width: 70px;
+    color: #a8d0e6;
+}
