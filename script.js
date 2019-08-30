@@ -17,6 +17,10 @@ button.appendChild(document.createTextNode('ROLL DICE'));
 button.style.float = 'left';
 leftSideContainer.appendChild(button);
 
+var diceMessage = document.createElement('div');
+diceMessage.setAttribute('class', 'message');
+leftSideContainer.appendChild(diceMessage);
+
 var gameContainer = document.createElement('div');
 gameContainer.setAttribute('id', 'game-container');
 document.body.appendChild(gameContainer);
@@ -55,6 +59,26 @@ var currentPlayer = 1;
 
 function movePlayer() {
     var diceNumber = Math.ceil(Math.random() * 6);
+    var diceMessagePlayer = 'Player ' + currentPlayer;
+    switch(diceNumber){
+        case 2:
+            diceMessage.innerHTML = '<p>' + diceMessagePlayer + ' got Two!<p>';
+        break;
+        case 3:
+            diceMessage.innerHTML = '<p>' + diceMessagePlayer + ' got Three!<p>';
+        break;
+        case 4:
+            diceMessage.innerHTML = '<p>' + diceMessagePlayer + ' got Four!<p>';
+        break;
+        case 5:
+            diceMessage.innerHTML = '<p>' + diceMessagePlayer + ' got Five!<p>';
+        break;
+        case 6:
+            diceMessage.innerHTML = '<p>' + diceMessagePlayer + ' got Six!<br>Nice! :)<p>';
+        break;
+        default:
+            diceMessage.innerHTML = '<p>' + diceMessagePlayer + ' got One!<p>';
+    }
     console.log(diceNumber);
     for(var i = 1; i <= diceNumber; i++){
         setTimeout(function(){

@@ -54,6 +54,12 @@ button {
     text-decoration: none;
     display: inline-block;
     font-size: 30px;
-    margin: 0 0 0 91px;
+    margin: 210px 0 0 91px;
     cursor: pointer;
+}
+
+.message {
+    margin: 420px 0 0 80px;
+    font-size: 20px;
+    color: #374785;
 }
