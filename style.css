@@ -5,17 +5,23 @@ html, body {
     background-color: #e3f5ff;
 }
 
+/* .inner {
+    position: absolute;
+} */
+  
 #game-container {
     height: 700px;
     width: 700px;
     margin-left: 333px;
     margin-right: 333px;
     margin-top: 20px;
+    position: absolute;
 }
 
 .side-container {
     height: 700px;
     width: 333px;
+    margin-top: 20px;
 }
 
 .box {
@@ -24,6 +30,33 @@ html, body {
     color: #a8d0e6;
 }
 
+/* #ladder1to38 {
+    margin: 475px 0 0 75px;
+    height: 210px;
+    width: 70px;
+    transform: rotate(33deg);
+}
+
+#ladder4to14 {
+    margin: 560px 0 0 325px;
+    height: 180px;
+    width: 50px;
+    transform: rotate(77deg);
+}
+
+#ladder9to31 {
+    margin: 495px 0 0 605px;
+    height: 170px;
+    width: 50px;
+    transform: rotate(10deg);
+}
+
+#ladder21to42 {
+    margin: 495px 0 0 605px;
+    height: 170px;
+    width: 50px;
+    transform: rotate(10deg);
+} */
 
 #player1 {
     height: 30px;
