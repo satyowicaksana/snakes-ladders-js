@@ -23,3 +23,37 @@ html, body {
     width: 70px;
     color: #a8d0e6;
 }
+
+
+#player1 {
+    height: 30px;
+    width: 30px;
+    background-color: #f8e9a1;
+    border-radius: 50%;
+    margin-top: 5px;
+    margin-right: 5px;
+    float: right;
+}
+
+#player2 {
+    height: 30px;
+    width: 30px;
+    background-color: #f76c6c;
+    border-radius: 50%;
+    margin-top: 15px;
+    margin-left: 5px;
+}
+
+button {
+    background-color: #f8e9a1;
+    width: 140px;
+    height: 140px;
+    border: none;
+    color: #374785;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 30px;
+    margin: 0 0 0 91px;
+    cursor: pointer;
+}
