@@ -87,12 +87,20 @@ button {
     text-decoration: none;
     display: inline-block;
     font-size: 30px;
-    margin: 210px 0 0 91px;
+    margin: 420px 0 0 91px;
     cursor: pointer;
 }
 
+button:disabled,
+button[disabled]{
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
+}
+
 .message {
-    margin: 420px 0 0 80px;
+    margin: 210px 0 0 80px;
     font-size: 20px;
     color: #374785;
+    position: absolute;
 }

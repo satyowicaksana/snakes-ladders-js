@@ -48,6 +48,11 @@ for(var i = 100; i > 0; i--) {
     gameContainer.appendChild(box);
 }
 
+var rightSideContainer = document.getElementsByClassName('side-container')[1];
+var specialMessage = document.createElement('div');
+specialMessage.setAttribute('class', 'message');
+rightSideContainer.appendChild(specialMessage);
+
 var ladders = {
     1: {destination: 38, margin: '475px 0 0 75px', height: '210px', width: '70px', transform: 'rotate(33deg)'},
     4: {destination: 14, margin: '560px 0 0 325px', height: '180px', width: '50px', transform: 'rotate(77deg)'},
@@ -104,7 +109,14 @@ var playerPosition = [1, 1]
 var currentPlayer = 1;
 
 function movePlayer() {
+    button.disabled = true;
+    specialMessage.innerHTML = '';
     var diceNumber = Math.ceil(Math.random() * 6);
+    if(diceNumber === 6) {
+        console.log('masuk 6')
+        specialMessage.innerHTML = 'Player ' + currentPlayer + ' got<br>EXTRA MOVE!';
+    }
+    // diceNumber = 3;
     var diceMessagePlayer = 'Player ' + currentPlayer;
     switch(diceNumber){
         case 2:
@@ -132,9 +144,27 @@ function movePlayer() {
             destinationBox.appendChild(document.getElementById('player' + (currentPlayer)));
         }, 400 * i);
     }
+    snakeLadderMove(diceNumber);
     if(diceNumber != 6){
         switchPlayer(diceNumber);
     }
+    activateButton(diceNumber);
+}
+
+function snakeLadderMove(timeout) {
+    setTimeout(function() {
+        if(ladders[playerPosition[currentPlayer - 1]]) {
+            playerPosition[currentPlayer - 1] = ladders[playerPosition[currentPlayer - 1]].destination;
+            var destinationBox = document.getElementById('box' + playerPosition[currentPlayer - 1]);
+            destinationBox.appendChild(document.getElementById('player' + (currentPlayer)));
+            specialMessage.innerHTML = '<p>Player ' + currentPlayer + ' got Ladder!<br>Nice! :)<p>';
+        } else if(snakes[playerPosition[currentPlayer - 1]]){
+            playerPosition[currentPlayer - 1] = snakes[playerPosition[currentPlayer - 1]].destination;
+            var destinationBox = document.getElementById('box' + playerPosition[currentPlayer - 1]);
+            destinationBox.appendChild(document.getElementById('player' + (currentPlayer)));
+            specialMessage.innerHTML = '<p>Player ' + currentPlayer + ' got Snake!<br>:(<p>';
+        }
+    }, 400 * (timeout + 1));
 }
 
 function switchPlayer(timeout) {
@@ -146,6 +176,12 @@ function switchPlayer(timeout) {
             currentPlayer = 1;
             button.style.background = '#f8e9a1';
         }
-        console.log(currentPlayer);
-    }, 400 * timeout + 1);
+        button.disabled = false;
+    }, 400 * (timeout + 1));
+}
+
+function activateButton(timeout) {
+    setTimeout(function() {
+        button.disabled = false;
+    }, 400 * (timeout + 1));
 }
