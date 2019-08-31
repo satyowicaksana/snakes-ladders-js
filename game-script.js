@@ -21,6 +21,14 @@ var diceMessage = document.createElement('div');
 diceMessage.setAttribute('class', 'message');
 leftSideContainer.appendChild(diceMessage);
 
+homeLink = document.createElement('a');
+homeLink.setAttribute('href', 'index.html');
+var logo = document.createElement('img');
+logo.setAttribute('src', 'img/logo.png');
+logo.setAttribute('id', 'logo');
+homeLink.appendChild(logo);
+leftSideContainer.appendChild(homeLink);
+
 var diceImage = document.createElement('img');
 diceImage.setAttribute('src', 'img/dice1.png');
 diceImage.setAttribute('id', 'dice-image');

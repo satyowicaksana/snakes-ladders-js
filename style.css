@@ -60,11 +60,18 @@ html, body {
     z-index: 2;
 }
 
+#logo {
+    width: 140px;
+    height: 140px;
+    margin: 0 0 0 91px;
+}
+
 #dice-image {
     width: 140px;
     height: 140px;
-    margin: 350px 0 0 91px;
+    margin: 210px 0 0 91px;
 }
+
 button {
     background-color: #f8e9a1;
     width: 140px;

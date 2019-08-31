@@ -11,6 +11,14 @@ for(var i = 0; i < 2; i++) {
 
 var leftSideContainer = document.getElementsByClassName('side-container')[0];
 
+homeLink = document.createElement('a');
+homeLink.setAttribute('href', 'index.html');
+var logo = document.createElement('img');
+logo.setAttribute('src', 'img/logo.png');
+logo.setAttribute('id', 'logo');
+homeLink.appendChild(logo);
+leftSideContainer.appendChild(homeLink);
+
 var diceImage = document.createElement('img');
 diceImage.setAttribute('src', 'img/dice1.png');
 diceImage.setAttribute('id', 'dice-image');
