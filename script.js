@@ -85,7 +85,7 @@ var snakes = {
     64: {destination: 60, margin: '210px 0 0 60px', height: '180px', width: '180px', transform: 'rotate(300deg)'},
     87: {destination: 24, margin: '80px 0 0 230px', height: '490px', width: '290px', transform: 'rotate(237deg)'},
     93: {destination: 73, margin: '65px 0 0 470px', height: '110px', width: '110px', transform: 'rotate(237deg)'},
-    98: {destination: 78, margin: '65px 0 0 190px', height: '110px', width: '110px', transform: 'rotate(237deg)'}
+    98: {destination: 78, margin: '65px 0 0 120px', height: '110px', width: '110px', transform: 'rotate(237deg)'}
 };
 for(point in snakes) {
     var snake = document.createElement('img');
@@ -102,21 +102,22 @@ for(point in snakes) {
 for(var i = 0; i < 2; i++) {
     var player = document.createElement('div');
     player.setAttribute('id', 'player' + (i + 1));
-    document.getElementById('box1').appendChild(player);
+    document.getElementById('box95').appendChild(player);
 }
 
-var playerPosition = [1, 1]
+var playerPosition = [95, 95]
 var currentPlayer = 1;
 
 function movePlayer() {
     button.disabled = true;
     specialMessage.innerHTML = '';
+    var goBack = false;
     var diceNumber = Math.ceil(Math.random() * 6);
+    diceNumber = 5;
     if(diceNumber === 6) {
         console.log('masuk 6')
-        specialMessage.innerHTML = 'Player ' + currentPlayer + ' got<br>EXTRA MOVE!';
+        specialMessage.innerHTML = '<p>Player ' + currentPlayer + ' got<br>EXTRA MOVE!</p>';
     }
-    // diceNumber = 3;
     var diceMessagePlayer = 'Player ' + currentPlayer;
     switch(diceNumber){
         case 2:
@@ -139,9 +140,17 @@ function movePlayer() {
     }
     for(var i = 1; i <= diceNumber; i++){
         setTimeout(function(){
-            playerPosition[currentPlayer - 1]++;
+            if(!goBack){
+                playerPosition[currentPlayer - 1]++;
+            } else {
+                playerPosition[currentPlayer - 1]--;
+            }
             var destinationBox = document.getElementById('box' + playerPosition[currentPlayer - 1]);
+            console.log(destinationBox);
             destinationBox.appendChild(document.getElementById('player' + (currentPlayer)));
+            if(playerPosition[currentPlayer - 1] === 100) {
+                goBack = true;
+            }
         }, 400 * i);
     }
     snakeLadderMove(diceNumber);
@@ -169,19 +178,24 @@ function snakeLadderMove(timeout) {
 
 function switchPlayer(timeout) {
     setTimeout(function() {
-        if(currentPlayer === 1) {
-            currentPlayer = 2;
-            button.style.background = '#f76c6c';
-        } else {
-            currentPlayer = 1;
-            button.style.background = '#f8e9a1';
+        if(playerPosition[currentPlayer - 1] !== 100) {
+            if(currentPlayer === 1) {
+                currentPlayer = 2;
+                button.style.background = '#f76c6c';
+            } else {
+                currentPlayer = 1;
+                button.style.background = '#f8e9a1';
+            }
         }
-        button.disabled = false;
     }, 400 * (timeout + 1));
 }
 
 function activateButton(timeout) {
     setTimeout(function() {
-        button.disabled = false;
+        if(playerPosition[currentPlayer - 1] !== 100) {
+            button.disabled = false;
+        } else {
+            specialMessage.innerHTML = '<p>Congratulations! :)<br>Player ' + currentPlayer + ' Wins!<p>';
+        }
     }, 400 * (timeout + 1));
 }
