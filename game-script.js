@@ -118,10 +118,10 @@ for(point in snakes) {
 for(var i = 0; i < 2; i++) {
     var player = document.createElement('div');
     player.setAttribute('id', 'player' + (i + 1));
-    document.getElementById('box95').appendChild(player);
+    document.getElementById('box0').appendChild(player);
 }
 
-var playerPosition = [95, 95];
+var playerPosition = [0, 0];
 var currentPlayer = 1;
 
 function movePlayer() {
@@ -141,7 +141,11 @@ function movePlayer() {
         specialMessage.innerHTML = '';
     }
     if(diceNumber === 6) {
-        specialMessage.innerHTML = '<p>One More Time!<br>' + messagePlayer + ' got extra move!</p>';
+        if(vsCpu && currentPlayer === 2) {
+            specialMessage.innerHTML = '<p>Oh no!<br>' + messagePlayer + ' got extra move!</p>';
+        } else {
+            specialMessage.innerHTML = '<p>One More Time!<br>' + messagePlayer + ' got extra move!</p>';
+        }
     }
     switch(diceNumber){
         case 2:
@@ -157,7 +161,7 @@ function movePlayer() {
             diceMessage.innerHTML = '<p>' + messagePlayer + ' got Five!<p>';
         break;
         case 6:
-            diceMessage.innerHTML = '<p>' + messagePlayer + ' got Six!<br>Nice! :)<p>';
+            diceMessage.innerHTML = '<p>' + messagePlayer + ' got Six!<p>';
         break;
         default:
             diceMessage.innerHTML = '<p>' + messagePlayer + ' got One!<p>';
