@@ -36,6 +36,10 @@ html, body {
     margin: 10px 0 0 10px;
 }
 
+#box0 {
+    margin: 140px 0 0 263px;
+}
+
 #player1 {
     height: 30px;
     width: 30px;

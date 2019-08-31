@@ -1,5 +1,3 @@
-var vsCpu = true;
-
 for(var i = 0; i < 2; i++) {
     var sideContainer = document.createElement('div');
     sideContainer.setAttribute('class', 'side-container');
@@ -13,192 +11,33 @@ for(var i = 0; i < 2; i++) {
 
 var leftSideContainer = document.getElementsByClassName('side-container')[0];
 
-var diceMessage = document.createElement('div');
-diceMessage.setAttribute('class', 'message');
-leftSideContainer.appendChild(diceMessage);
-
 var diceImage = document.createElement('img');
 diceImage.setAttribute('src', 'img/dice1.png');
 diceImage.setAttribute('id', 'dice-image');
 leftSideContainer.appendChild(diceImage);
-// diceImage.style.visibility = 'hidden';
-
-var button = document.createElement('button');
-button.setAttribute('onclick', 'movePlayer()');
-button.appendChild(document.createTextNode('ROLL DICE'));
-button.style.float = 'left';
-leftSideContainer.appendChild(button);
 
 var gameContainer = document.createElement('div');
 gameContainer.setAttribute('id', 'game-container');
+gameContainer.innerHTML = 'Welcome!<br><br><p>This is a simple Snakes and Ladders game<br>that is built with javascript to practice DOM manipulation.<br><br>Select mode to start!';
+gameContainer.style.textAlign = 'center';
+gameContainer.style.fontSize = '30px';
+gameContainer.style.color = '#24305e';
 document.body.appendChild(gameContainer);
 
-var oddRow = true;
-for(var i = 100; i > 0; i--) {
-    var box = document.createElement('div');
-    box.setAttribute('id', 'box' + i);
-    if(i % 10 === 0) {
-        oddRow = !oddRow;
-    }
-    box.setAttribute('class', 'box');
-    if(oddRow) {
-        box.style.float = 'right';
+for(var i = 0; i < 2; i ++) {
+    var strMode = '';
+    if(i === 0) {
+        strMode = 'p1vp2';
     } else {
-        box.style.float = 'left';
+        strMode = 'p1vpc';
     }
-    if(i % 2 === 0) {
-        box.style.background = '#374785';
-    } else {
-        box.style.background = '#24305e';
-    }
-    
-    box.innerHTML =  '<p>' + i + '<p>';
-    gameContainer.appendChild(box);
-}
-
-var rightSideContainer = document.getElementsByClassName('side-container')[1];
-var specialMessage = document.createElement('div');
-specialMessage.setAttribute('class', 'message');
-rightSideContainer.appendChild(specialMessage);
-
-var ladders = {
-    1: {destination: 38, margin: '475px 0 0 75px', height: '210px', width: '70px', transform: 'rotate(33deg)'},
-    4: {destination: 14, margin: '560px 0 0 325px', height: '180px', width: '50px', transform: 'rotate(77deg)'},
-    9: {destination: 31, margin: '495px 0 0 605px', height: '170px', width: '50px', transform: 'rotate(10deg)'},
-    21: {destination: 42, margin: '423px 0 0 55px', height: '100px', width: '30px', transform: 'rotate(15deg)'},
-    28: {destination: 84, margin: '95px 0 0 335px', height: '480px', width: '110px', transform: 'rotate(145deg)'},
-    36: {destination: 44, margin: '415px 0 0 270px', height: '50px', width: '20px', transform: 'rotate(140deg)'},
-    51: {destination: 67, margin: '210px 0 0 535px', height: '180px', width: '50px', transform: 'rotate(100deg)'},
-    71: {destination: 91, margin: '75px 0 0 640px', height: '170px', width: '50px', transform: 'rotate(0deg)'},
-    80: {destination: 100, margin: '75px 0 0 10px', height: '170px', width: '50px', transform: 'rotate(0deg)'}
-};
-for(point in ladders) {
-    var ladder = document.createElement('img');
-    ladder.setAttribute('src', 'img/ladder.png');
-    ladder.style.zIndex = 1;
-    ladder.style.position = 'absolute';
-    ladder.style.margin = ladders[point].margin;
-    ladder.style.height = ladders[point].height;
-    ladder.style.width = ladders[point].width;
-    ladder.style.transform = ladders[point].transform;
-    document.body.appendChild(ladder);
-}
-
-var snakes = {
-    16: {destination: 6, margin: '610px 0 0 310px', height: '80px', width: '80px', transform: 'rotate(180deg)'},
-    47: {destination: 26, margin: '410px 0 0 360px', height: '120px', width: '120px', transform: 'rotate(250deg)'},
-    48: {destination: 11, margin: '410px 0 0 480px', height: '200px', width: '200px', transform: 'rotate(190deg)'},
-    56: {destination: 53, margin: '260px 0 0 330px', height: '160px', width: '160px', transform: 'rotate(140deg)'},
-    62: {destination: 19, margin: '260px 0 0 0px', height: '350px', width: '230px', transform: 'rotate(215deg)'},
-    64: {destination: 60, margin: '210px 0 0 60px', height: '180px', width: '180px', transform: 'rotate(300deg)'},
-    87: {destination: 24, margin: '80px 0 0 230px', height: '490px', width: '290px', transform: 'rotate(237deg)'},
-    93: {destination: 73, margin: '65px 0 0 470px', height: '110px', width: '110px', transform: 'rotate(237deg)'},
-    98: {destination: 78, margin: '65px 0 0 120px', height: '110px', width: '110px', transform: 'rotate(237deg)'}
-};
-for(point in snakes) {
-    var snake = document.createElement('img');
-    snake.setAttribute('src', 'img/snake.png');
-    snake.style.zIndex = 1;
-    snake.style.position = 'absolute';
-    snake.style.margin = snakes[point].margin;
-    snake.style.height = snakes[point].height;
-    snake.style.width = snakes[point].width;
-    snake.style.transform = snakes[point].transform;
-    document.body.appendChild(snake);
-}
-
-for(var i = 0; i < 2; i++) {
-    var player = document.createElement('div');
-    player.setAttribute('id', 'player' + (i + 1));
-    document.getElementById('box1').appendChild(player);
-}
-
-var playerPosition = [1, 1]
-var currentPlayer = 1;
-
-function movePlayer() {
-    // diceImage.style.visibility = 'visible';
-    button.disabled = true;
-    specialMessage.innerHTML = '';
-    var goBack = false;
-    var diceNumber = Math.ceil(Math.random() * 6);
-    diceImage.setAttribute('src', 'img/dice' + diceNumber + '.png');
-    if(diceNumber === 6) {
-        console.log('masuk 6')
-        specialMessage.innerHTML = '<p>One More Time!<br>Player ' + currentPlayer + ' continues!</p>';
-    }
-    var diceMessagePlayer = 'Player ' + currentPlayer;
-    switch(diceNumber){
-        case 2:
-            diceMessage.innerHTML = '<p>' + diceMessagePlayer + ' got Two!<p>';
-        break;
-        case 3:
-            diceMessage.innerHTML = '<p>' + diceMessagePlayer + ' got Three!<p>';
-        break;
-        case 4:
-            diceMessage.innerHTML = '<p>' + diceMessagePlayer + ' got Four!<p>';
-        break;
-        case 5:
-            diceMessage.innerHTML = '<p>' + diceMessagePlayer + ' got Five!<p>';
-        break;
-        case 6:
-            diceMessage.innerHTML = '<p>' + diceMessagePlayer + ' got Six!<br>Nice! :)<p>';
-        break;
-        default:
-            diceMessage.innerHTML = '<p>' + diceMessagePlayer + ' got One!<p>';
-    }
-    for(var i = 1; i <= diceNumber; i++){
-        setTimeout(function(){
-            if(!goBack){
-                playerPosition[currentPlayer - 1]++;
-            } else {
-                playerPosition[currentPlayer - 1]--;
-            }
-            var destinationBox = document.getElementById('box' + playerPosition[currentPlayer - 1]);
-            console.log(destinationBox);
-            destinationBox.appendChild(document.getElementById('player' + (currentPlayer)));
-            if(playerPosition[currentPlayer - 1] === 100) {
-                goBack = true;
-            }
-        }, 400 * i);
-    }
-    snakeLadderMove(diceNumber);
-    switchPlayer(diceNumber);
-}
-
-function snakeLadderMove(timeout) {
-    setTimeout(function() {
-        if(ladders[playerPosition[currentPlayer - 1]]) {
-            playerPosition[currentPlayer - 1] = ladders[playerPosition[currentPlayer - 1]].destination;
-            var destinationBox = document.getElementById('box' + playerPosition[currentPlayer - 1]);
-            destinationBox.appendChild(document.getElementById('player' + (currentPlayer)));
-            specialMessage.innerHTML = '<p>Up Up and Away! :)<br>Player ' + currentPlayer + ' got Ladder!<p>';
-        } else if(snakes[playerPosition[currentPlayer - 1]]){
-            playerPosition[currentPlayer - 1] = snakes[playerPosition[currentPlayer - 1]].destination;
-            var destinationBox = document.getElementById('box' + playerPosition[currentPlayer - 1]);
-            destinationBox.appendChild(document.getElementById('player' + (currentPlayer)));
-            specialMessage.innerHTML = '<p>Way Down We Go. :(<br>Player ' + currentPlayer + ' got Snake.';
-        }
-    }, 400 * (timeout + 1));
-}
-
-function switchPlayer(timeout) {
-    setTimeout(function() {
-        //Jika player belum menang dan angka dadu bukan 6, ubah pemain
-        if(playerPosition[currentPlayer - 1] !== 100) {
-            if(timeout !== 6) {
-                if(currentPlayer === 1) {
-                    currentPlayer = 2;
-                    button.style.background = '#f76c6c';
-                } else {
-                    currentPlayer = 1;
-                    button.style.background = '#f8e9a1';
-                }
-            }
-            button.disabled = false;
-        } else {
-            button.style.display = 'none';
-            specialMessage.innerHTML = '<p>Congratulations! :)<br>Player ' + currentPlayer + ' Wins!<p>';
-        }
-    }, 400 * (timeout + 1));
+    var modeLink = document.createElement('a');
+    modeLink.setAttribute('href', 'game.html?mode=' + strMode);
+    var modeImage = document.createElement('img');
+    modeImage.setAttribute('src', 'img/' + strMode + '.png');
+    modeImage.style.height = '200px';
+    modeImage.style.width = '200px';
+    modeImage.style.margin = '30px';
+    modeLink.appendChild(modeImage);
+    gameContainer.appendChild(modeLink);
 }
