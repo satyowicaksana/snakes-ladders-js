@@ -1,3 +1,5 @@
+var vsCpu = true;
+
 for(var i = 0; i < 2; i++) {
     var sideContainer = document.createElement('div');
     sideContainer.setAttribute('class', 'side-container');
@@ -14,6 +16,12 @@ var leftSideContainer = document.getElementsByClassName('side-container')[0];
 var diceMessage = document.createElement('div');
 diceMessage.setAttribute('class', 'message');
 leftSideContainer.appendChild(diceMessage);
+
+var diceImage = document.createElement('img');
+diceImage.setAttribute('src', 'img/dice1.png');
+diceImage.setAttribute('id', 'dice-image');
+leftSideContainer.appendChild(diceImage);
+// diceImage.style.visibility = 'hidden';
 
 var button = document.createElement('button');
 button.setAttribute('onclick', 'movePlayer()');
@@ -109,10 +117,12 @@ var playerPosition = [1, 1]
 var currentPlayer = 1;
 
 function movePlayer() {
+    // diceImage.style.visibility = 'visible';
     button.disabled = true;
     specialMessage.innerHTML = '';
     var goBack = false;
     var diceNumber = Math.ceil(Math.random() * 6);
+    diceImage.setAttribute('src', 'img/dice' + diceNumber + '.png');
     if(diceNumber === 6) {
         console.log('masuk 6')
         specialMessage.innerHTML = '<p>One More Time!<br>Player ' + currentPlayer + ' continues!</p>';

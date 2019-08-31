@@ -1,5 +1,5 @@
 html, body {
-    max-width: 1366px;
+    width: 1366px;
     margin: auto;
     background-color: #e3f5ff;
     font-family: 'Boogaloo', cursive;
@@ -56,6 +56,11 @@ html, body {
     z-index: 2;
 }
 
+#dice-image {
+    width: 140px;
+    height: 140px;
+    margin: 350px 0 0 91px;
+}
 button {
     background-color: #f8e9a1;
     width: 140px;
@@ -66,7 +71,7 @@ button {
     text-decoration: none;
     display: inline-block;
     font-size: 50px;
-    margin: 420px 0 0 91px;
+    margin: 0 0 0 91px;
     cursor: pointer;
     font-family: 'Boogaloo', cursive;
 }
