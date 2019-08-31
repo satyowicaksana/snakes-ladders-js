@@ -1,8 +1,8 @@
 html, body {
     max-width: 1366px;
     margin: auto;
-    font-family: 'Arial';
     background-color: #e3f5ff;
+    font-family: 'Boogaloo', cursive;
 }
 
 /* .inner {
@@ -30,42 +30,20 @@ html, body {
     color: #a8d0e6;
 }
 
-/* #ladder1to38 {
-    margin: 475px 0 0 75px;
-    height: 210px;
-    width: 70px;
-    transform: rotate(33deg);
+.box p {
+    position: absolute;
+    font-size: 20px;
+    margin: 10px 0 0 10px;
 }
-
-#ladder4to14 {
-    margin: 560px 0 0 325px;
-    height: 180px;
-    width: 50px;
-    transform: rotate(77deg);
-}
-
-#ladder9to31 {
-    margin: 495px 0 0 605px;
-    height: 170px;
-    width: 50px;
-    transform: rotate(10deg);
-}
-
-#ladder21to42 {
-    margin: 495px 0 0 605px;
-    height: 170px;
-    width: 50px;
-    transform: rotate(10deg);
-} */
 
 #player1 {
     height: 30px;
     width: 30px;
     background-color: #f8e9a1;
     border-radius: 50%;
-    margin-top: 5px;
-    margin-right: 5px;
-    float: right;
+    margin: 5px 0 0 35px;  
+    position: absolute;
+    z-index: 2;
 }
 
 #player2 {
@@ -73,8 +51,9 @@ html, body {
     width: 30px;
     background-color: #f76c6c;
     border-radius: 50%;
-    margin-top: 15px;
-    margin-left: 5px;
+    margin: 35px 0 0 5px;
+    position: absolute;
+    z-index: 2;
 }
 
 button {
@@ -86,9 +65,10 @@ button {
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 30px;
+    font-size: 50px;
     margin: 420px 0 0 91px;
     cursor: pointer;
+    font-family: 'Boogaloo', cursive;
 }
 
 button:disabled,
@@ -100,7 +80,7 @@ button[disabled]{
 
 .message {
     margin: 210px 0 0 80px;
-    font-size: 20px;
+    font-size: 30px;
     color: #374785;
     position: absolute;
 }
