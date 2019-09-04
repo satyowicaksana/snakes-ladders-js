@@ -86,7 +86,7 @@ var ladders = {
     36: {destination: 44, margin: '415px 0 0 270px', height: '50px', width: '20px', transform: 'rotate(140deg)'},
     51: {destination: 67, margin: '210px 0 0 535px', height: '180px', width: '50px', transform: 'rotate(100deg)'},
     71: {destination: 91, margin: '75px 0 0 640px', height: '170px', width: '50px', transform: 'rotate(0deg)'},
-    80: {destination: 100, margin: '75px 0 0 10px', height: '170px', width: '50px', transform: 'rotate(0deg)'}
+    80: {destination: 100, margin: '75px 0 0 20px', height: '110px', width: '30px', transform: 'rotate(0deg)'}
 };
 for(point in ladders) {
     var ladder = document.createElement('img');
@@ -109,7 +109,7 @@ var snakes = {
     64: {destination: 60, margin: '210px 0 0 60px', height: '180px', width: '180px', transform: 'rotate(300deg)'},
     87: {destination: 24, margin: '80px 0 0 230px', height: '490px', width: '290px', transform: 'rotate(237deg)'},
     93: {destination: 73, margin: '65px 0 0 470px', height: '110px', width: '110px', transform: 'rotate(237deg)'},
-    98: {destination: 78, margin: '65px 0 0 120px', height: '110px', width: '110px', transform: 'rotate(237deg)'}
+    98: {destination: 78, margin: '65px 0 0 140px', height: '110px', width: '110px', transform: 'rotate(237deg)'}
 };
 for(point in snakes) {
     var snake = document.createElement('img');
